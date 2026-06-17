@@ -8,7 +8,6 @@ class AppTheme {
         colorScheme: ColorScheme.fromSeed(
           seedColor: AppColors.primary,
           primary: AppColors.primary,
-          background: AppColors.background,
           surface: AppColors.surface,
           error: AppColors.error,
         ),
@@ -35,7 +34,7 @@ class AppTheme {
           ),
           contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
         ),
-        cardTheme: CardTheme(
+        cardTheme: CardThemeData(
           elevation: 2,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           color: Colors.white,
@@ -50,7 +49,6 @@ class AppTheme {
           seedColor: AppColors.primary,
           primary: AppColors.primary,
           brightness: Brightness.dark,
-          background: AppColors.darkBackground,
           surface: AppColors.darkSurface,
         ),
         scaffoldBackgroundColor: AppColors.darkBackground,
@@ -76,7 +74,7 @@ class AppTheme {
           ),
           contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
         ),
-        cardTheme: CardTheme(
+        cardTheme: CardThemeData(
           elevation: 2,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           color: AppColors.darkCard,
