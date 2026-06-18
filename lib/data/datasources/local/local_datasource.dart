@@ -1,5 +1,5 @@
 import 'package:hive_flutter/hive_flutter.dart';
-import '../models/user_profile_model.dart';
+import '../../models/user_profile_model.dart';
 
 class LocalDataSource {
   static const _profileBox = 'profiles';
