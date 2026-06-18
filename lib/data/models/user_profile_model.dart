@@ -1,4 +1,4 @@
-import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import '../../domain/entities/user_profile.dart';
 
 part 'user_profile_model.g.dart';
