@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../screens/discovery/home_screen.dart';
-import '../screens/favorites/favorites_screen.dart';
 import '../screens/profile/my_profile_screen.dart';
 import '../screens/settings/settings_screen.dart';
 
@@ -16,7 +15,6 @@ class _MainShellState extends State<MainShell> {
 
   final _screens = const [
     HomeScreen(),
-    FavoritesScreen(),
     MyProfileScreen(),
     SettingsScreen(),
   ];
@@ -30,7 +28,6 @@ class _MainShellState extends State<MainShell> {
         onDestinationSelected: (i) => setState(() => _index = i),
         destinations: const [
           NavigationDestination(icon: Icon(Icons.explore_outlined), selectedIcon: Icon(Icons.explore), label: 'Discover'),
-          NavigationDestination(icon: Icon(Icons.favorite_border), selectedIcon: Icon(Icons.favorite), label: 'Saved'),
           NavigationDestination(icon: Icon(Icons.person_outline), selectedIcon: Icon(Icons.person), label: 'Profile'),
           NavigationDestination(icon: Icon(Icons.settings_outlined), selectedIcon: Icon(Icons.settings), label: 'Settings'),
         ],
