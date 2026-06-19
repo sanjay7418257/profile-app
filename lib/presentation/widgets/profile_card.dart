@@ -20,6 +20,10 @@ class ProfileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final inactiveFavoriteBg = isDark
+        ? Colors.white.withValues(alpha: 0.08)
+        : AppColors.surface;
+
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
       decoration: BoxDecoration(
@@ -109,7 +113,7 @@ class ProfileCard extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: isFavorite
                         ? Colors.red.withValues(alpha: 0.1)
-                        : AppColors.surface,
+                        : inactiveFavoriteBg,
                     shape: BoxShape.circle,
                   ),
                   child: Icon(

@@ -659,6 +659,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   Widget _emptySavedPrompt(DiscoveryState state) {
     final hasSearch = state.searchQuery.trim().isNotEmpty;
+    final colorScheme = Theme.of(context).colorScheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final cardColor = isDark ? AppColors.darkCard : Colors.white;
+    final bodyTextColor = colorScheme.onSurface.withValues(alpha: 0.64);
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 18, 16, 24),
@@ -666,9 +670,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         width: double.infinity,
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 24),
         decoration: BoxDecoration(
-          color: AppColors.surface,
+          color: cardColor,
           borderRadius: BorderRadius.circular(18),
-          border: Border.all(color: AppColors.divider.withValues(alpha: 0.8)),
+          border: Border.all(
+            color: colorScheme.outlineVariant.withValues(alpha: 0.7),
+          ),
         ),
         child: Column(
           children: [
@@ -688,7 +694,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             const SizedBox(height: 14),
             Text(
               hasSearch ? 'No saved match found' : 'No saved profiles yet',
-              style: const TextStyle(
+              style: TextStyle(
+                color: colorScheme.onSurface,
                 fontSize: 16,
                 fontWeight: FontWeight.w700,
               ),
@@ -699,8 +706,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ? 'Try another search or switch back to Best matches.'
                   : 'Tap the heart on profiles you like, then they will appear here.',
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: AppColors.textSecondary,
+              style: TextStyle(
+                color: bodyTextColor,
                 fontSize: 12,
                 height: 1.4,
               ),
@@ -717,18 +724,23 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     bool isActive = false,
     required VoidCallback onTap,
   }) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final inactiveBg = isDark ? AppColors.darkCard : Colors.white;
+    final inactiveText = colorScheme.onSurface.withValues(alpha: 0.72);
+
     return GestureDetector(
       onTap: onTap,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 180),
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         decoration: BoxDecoration(
-          color: isActive ? AppColors.primary : AppColors.surface,
+          color: isActive ? AppColors.primary : inactiveBg,
           borderRadius: BorderRadius.circular(24),
           border: Border.all(
             color: isActive
                 ? AppColors.primary
-                : AppColors.divider.withValues(alpha: 0.8),
+                : colorScheme.outlineVariant.withValues(alpha: 0.7),
           ),
         ),
         child: Row(
@@ -743,7 +755,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             Text(
               label,
               style: TextStyle(
-                color: isActive ? Colors.white : AppColors.textSecondary,
+                color: isActive ? Colors.white : inactiveText,
                 fontSize: 12,
                 fontWeight: FontWeight.w700,
               ),

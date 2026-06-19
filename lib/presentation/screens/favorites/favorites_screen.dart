@@ -14,22 +14,29 @@ class FavoritesScreen extends ConsumerWidget {
     final state = ref.watch(discoveryProvider);
     final notifier = ref.read(discoveryProvider.notifier);
     final favorites = notifier.favoriteProfiles;
+    final colorScheme = Theme.of(context).colorScheme;
+    final secondaryText = colorScheme.onSurface.withValues(alpha: 0.64);
 
     if (favorites.isEmpty) {
-      return const Center(
+      return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.favorite_border, size: 64, color: AppColors.textSecondary),
-            SizedBox(height: 16),
+            Icon(
+              Icons.favorite_border,
+              size: 64,
+              color: secondaryText,
+            ),
+            const SizedBox(height: 16),
             Text('No saved profiles yet',
-                style: TextStyle(color: AppColors.textSecondary)),
+                style: TextStyle(color: secondaryText)),
           ],
         ),
       );
     }
 
     return ListView.builder(
+      padding: const EdgeInsets.only(top: 8, bottom: 16),
       itemCount: favorites.length,
       itemBuilder: (_, i) {
         final profile = favorites[i];
