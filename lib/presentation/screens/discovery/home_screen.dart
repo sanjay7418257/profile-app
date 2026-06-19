@@ -293,17 +293,21 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 child: TextField(
                   controller: _searchCtrl,
                   cursorColor: AppColors.primary,
+                  textAlignVertical: TextAlignVertical.center,
                   style: const TextStyle(
                     fontSize: 14,
                     color: AppColors.textPrimary,
                     fontWeight: FontWeight.w500,
                   ),
                   decoration: InputDecoration(
+                    isDense: true,
                     hintText: 'Search name, job, location...',
                     hintStyle: const TextStyle(
                         color: AppColors.textSecondary, fontSize: 13),
                     prefixIcon: const Icon(Icons.search_rounded,
                         color: AppColors.primary, size: 21),
+                    prefixIconConstraints:
+                        const BoxConstraints(minWidth: 48, minHeight: 52),
                     suffixIcon: _searchCtrl.text.isNotEmpty
                         ? IconButton(
                             icon: const Icon(Icons.clear_rounded,
@@ -315,9 +319,28 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                             },
                           )
                         : null,
-                    border: InputBorder.none,
-                    contentPadding:
-                        const EdgeInsets.symmetric(vertical: 15),
+                    suffixIconConstraints:
+                        const BoxConstraints(minWidth: 48, minHeight: 52),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                      borderSide: BorderSide.none,
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                      borderSide: BorderSide.none,
+                    ),
+                    disabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                      borderSide: BorderSide.none,
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                      borderSide: BorderSide.none,
+                    ),
+                    contentPadding: const EdgeInsets.symmetric(
+                      vertical: 0,
+                      horizontal: 16,
+                    ),
                   ),
                   onChanged: (v) {
                     ref.read(discoveryProvider.notifier).search(v);
